@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var us_states = require('../us_state.js');
 
 // * Post matched elections page. *//
 router.post('/', function (req, res) {
@@ -22,19 +23,22 @@ router.post('/', function (req, res) {
   request.get({
     url: url,
     header: {
+      'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
   }, function (error, response, body) {
     if (error) {
-      res.render('elections', { title: error });
+      // * if there is an error we redirect the user back to the form
+      console.log(error);
+      res.redirect('/');
     } else {
+      // * Here we get the data and render the elections page with upcoming elections
       var elections = body;
       // * We're getting the data now
       console.log('BODY: ', body);
       res.render('elections', { title: 'Find My Election' });
     }
   });
-  // res.render('elections', { title: 'Find My Election'});
 });
 
 module.exports = router;
