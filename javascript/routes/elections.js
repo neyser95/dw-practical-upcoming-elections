@@ -35,7 +35,10 @@ router.post('/', function (req, res) {
       // * Here we get the data and render the elections page with upcoming elections
       var elections = body;
       // * We're getting the data now
+      // ! Header set to accept 'application/json', but data doesn't look like json object?? type = string
       console.log('BODY: ', body);
+      console.log('TYPE: ', typeof body);
+      
       res.render('elections', { title: 'Find My Election' });
     }
   });
