@@ -1,3 +1,6 @@
 <div>
-  Hello this is the elections page!
+  {{#each elections}}
+    <p>Polling Place: <a href={{this.polling-place-url}}>election info</a></p>
+    <p>Description: {{this.description}}</p>
+  {{/each}}
 </div>
